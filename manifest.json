@@ -1,11 +1,12 @@
 {
-    "name": "time",
-    "short_name": "time",
+    "name": "Time Now",
+    "short_name": "Time",
     "start_url": ".",
+    "scope": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Shows Time Now.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
