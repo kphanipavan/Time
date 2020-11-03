@@ -5,7 +5,7 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "3d89ceffa77cd9acc4f6ea15e436bd67",
 "index.html": "01224db2a039381596e9a26bcd4c339a",
-"\/": "01224db2a039381596e9a26bcd4c339a",
+"/": "01224db2a039381596e9a26bcd4c339a",
 "main.dart.js": "0196a72c2070191e6bc843f0d4b5930b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons\/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
@@ -21,7 +21,7 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "\/",
+  "/",
 "main.dart.js",
 "index.html",
 "assets\/NOTICES",
@@ -66,7 +66,7 @@ self.addEventListener("activate", function(event) {
       for (var request of await contentCache.keys()) {
         var key = request.url.substring(origin.length + 1);
         if (key == "") {
-          key = "\/";
+          key = r"/";
         }
         // If a resource from the old manifest is not in the new cache, or if
         // the MD5 sum has changed, delete it. Otherwise the resource is left
@@ -108,7 +108,7 @@ self.addEventListener("fetch", (event) => {
     key = key.split('?v=')[0];
   }
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#') || key == '') {
-    key = '\/';
+    key = r'/';
   }
   // If the URL is not the RESOURCE list then return to signal that the
   // browser should take over.
@@ -116,7 +116,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
   // If the URL is the index.html, perform an online-first request.
-  if (key == '\/') {
+  if (key == r'/') {
     return onlineFirst(event);
   }
   event.respondWith(caches.open(CACHE_NAME)
@@ -155,7 +155,7 @@ async function downloadOffline() {
   for (var request of await contentCache.keys()) {
     var key = request.url.substring(origin.length + 1);
     if (key == "") {
-      key = "\/";
+      key = r"/";
     }
     currentContent[key] = true;
   }
