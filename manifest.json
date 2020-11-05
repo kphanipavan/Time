@@ -1,12 +1,11 @@
 {
-    "name": "Time Now",
+    "name": "Time, Now",
     "short_name": "Time",
     "start_url": ".",
-    "scope": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Shows Time Now.",
+    "description": "Shows Current Time",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

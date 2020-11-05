@@ -1,33 +1,34 @@
-//'use strict';
+'use strict';
 const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "3d89ceffa77cd9acc4f6ea15e436bd67",
-"index.html": "01224db2a039381596e9a26bcd4c339a",
-"/": "01224db2a039381596e9a26bcd4c339a",
-"main.dart.js": "0196a72c2070191e6bc843f0d4b5930b",
-"favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"icons\/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"icons\/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+"index.html": "7164386d9042c45d7ce947507068f401",
+"/": "7164386d9042c45d7ce947507068f401",
+"main.dart.js": "50cd606f1aee25058799b4c58ed29de6",
+"favicon.png": "deb412c5a0fbefaaf0e6593495c2f621",
+"icons/favicon.ico": "deb412c5a0fbefaaf0e6593495c2f621",
+"icons/Icon-192.png": "985f2bcbf3885c5f09a4a39aaf2d74ca",
+"icons/Icon-512.png": "926b2ee29770742623eb3dd771d1063e",
 "manifest.json": "45cd15467ba5431a085d0435a0ef8b2b",
-"assets\/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
-"assets\/NOTICES": "ee46c3b5c9f21ead637e489c91bfd715",
-"assets\/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
-"assets\/packages\/cupertino_icons\/assets\/CupertinoIcons.ttf": "b14fcf3ee94e3ace300b192e9e7c8c5d",
-"assets\/fonts\/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac"
+"assets/AssetManifest.json": "2efbb41d7877d10aac9d091f58ccd7b9",
+"assets/NOTICES": "ee46c3b5c9f21ead637e489c91bfd715",
+"assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "b14fcf3ee94e3ace300b192e9e7c8c5d",
+"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac"
 };
 
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
- // "/",
+//  "/",
 "main.dart.js",
 "index.html",
-"assets\/NOTICES",
-"assets\/AssetManifest.json",
-"assets\/FontManifest.json"];
-//During install, the TEMP cache is populated with the application shell files.
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
+// During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
   return event.waitUntil(
@@ -66,7 +67,7 @@ self.addEventListener("activate", function(event) {
       for (var request of await contentCache.keys()) {
         var key = request.url.substring(origin.length + 1);
         if (key == "") {
-          key = "Time/";
+          key = "/";
         }
         // If a resource from the old manifest is not in the new cache, or if
         // the MD5 sum has changed, delete it. Otherwise the resource is left
@@ -108,7 +109,7 @@ self.addEventListener("fetch", (event) => {
     key = key.split('?v=')[0];
   }
   if (event.request.url == origin || event.request.url.startsWith(origin + '/#') || key == '') {
-    key = 'Time/';
+    key = '/';
   }
   // If the URL is not the RESOURCE list then return to signal that the
   // browser should take over.
@@ -155,7 +156,7 @@ async function downloadOffline() {
   for (var request of await contentCache.keys()) {
     var key = request.url.substring(origin.length + 1);
     if (key == "") {
-      key = "Time/";
+      key = "/";
     }
     currentContent[key] = true;
   }
